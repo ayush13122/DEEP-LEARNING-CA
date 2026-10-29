@@ -1,0 +1,72 @@
+{
+  "project": "Model 2 intraday next-hour solar forecasting",
+  "lookback": 24,
+  "input_shape": [
+    24,
+    27
+  ],
+  "features": [
+    "ac_power__5069",
+    "ambient_temp__5062",
+    "module_temp__5063",
+    "poa_irradiance__5061",
+    "T2M",
+    "RH2M",
+    "WS10M",
+    "WD10M",
+    "PS",
+    "PRECTOTCORR",
+    "ALLSKY_SFC_SW_DWN",
+    "CLOUD_AMT",
+    "high_cloud_cover",
+    "medium_cloud_cover",
+    "low_cloud_cover",
+    "wind_gust_10m",
+    "snowfall",
+    "wind_speed_900_mb",
+    "wind_direction_900_mb",
+    "solar_zenith_angle",
+    "solar_azimuth_angle",
+    "hour_sin",
+    "hour_cos",
+    "month_sin",
+    "month_cos",
+    "day_of_year_sin",
+    "day_of_year_cos"
+  ],
+  "target": "target_ac_power",
+  "seed": 42,
+  "epochs_requested": 40,
+  "batch_size": 128,
+  "split": {
+    "assignment_basis": "target_timestamp",
+    "training_end": "2015-12-31 23:59:59",
+    "validation_start": "2016-01-01",
+    "validation_end": "2016-12-31 23:59:59",
+    "test_start": "2017-01-01",
+    "sample_counts": {
+      "train": 41150,
+      "validation": 7919,
+      "test": 2552
+    },
+    "actual_ranges": {
+      "train": {
+        "start": "2011-01-01 00:00:00",
+        "end": "2015-12-31 23:00:00"
+      },
+      "validation": {
+        "start": "2016-01-01 00:00:00",
+        "end": "2016-12-31 21:00:00"
+      },
+      "test": {
+        "start": "2017-01-02 15:00:00",
+        "end": "2017-12-29 21:00:00"
+      }
+    }
+  },
+  "scaler_fit_scope": "training sequences and labels only",
+  "architectures": {
+    "lstm": "Model: \"lstm_regressor\"\n+--------------------------------------------------------------------------+\n| Layer (type)                    | Output Shape           |       Param # |\n|---------------------------------+------------------------+---------------|\n| lstm_64 (LSTM)                  | (None, 64)             |        23,552 |\n|---------------------------------+------------------------+---------------|\n| dense_32 (Dense)                | (None, 32)             |         2,080 |\n|---------------------------------+------------------------+---------------|\n| dropout (Dropout)               | (None, 32)             |             0 |\n|---------------------------------+------------------------+---------------|\n| next_hour_power (Dense)         | (None, 1)              |            33 |\n+--------------------------------------------------------------------------+\n Total params: 76,997 (300.77 KB)\n Trainable params: 25,665 (100.25 KB)\n Non-trainable params: 0 (0.00 B)\n Optimizer params: 51,332 (200.52 KB)\n",
+    "cnn": "Model: \"cnn_1d_regressor\"\n+--------------------------------------------------------------------------+\n| Layer (type)                    | Output Shape           |       Param # |\n|---------------------------------+------------------------+---------------|\n| conv1d_32 (Conv1D)              | (None, 24, 32)         |         2,624 |\n|---------------------------------+------------------------+---------------|\n| conv1d_64 (Conv1D)              | (None, 24, 64)         |         6,208 |\n|---------------------------------+------------------------+---------------|\n| global_average_pool             | (None, 64)             |             0 |\n| (GlobalAveragePooling1D)        |                        |               |\n|---------------------------------+------------------------+---------------|\n| dense_32 (Dense)                | (None, 32)             |         2,080 |\n|---------------------------------+------------------------+---------------|\n| dropout (Dropout)               | (None, 32)             |             0 |\n|---------------------------------+------------------------+---------------|\n| next_hour_power (Dense)         | (None, 1)              |            33 |\n+--------------------------------------------------------------------------+\n Total params: 32,837 (128.27 KB)\n Trainable params: 10,945 (42.75 KB)\n Non-trainable params: 0 (0.00 B)\n Optimizer params: 21,892 (85.52 KB)\n"
+  }
+}

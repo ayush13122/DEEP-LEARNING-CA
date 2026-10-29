@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.streamlit/secrets.toml
+.env
+*.log
+outputs/rendered_report/
+outputs/rendered_report_word.pdf

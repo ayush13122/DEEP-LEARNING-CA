@@ -1,0 +1,47 @@
+{
+  "source_file": "Model2_Intraday_NextHour.csv",
+  "rows_loaded": 56275,
+  "rows_after_sort": 56275,
+  "column_count": 30,
+  "feature_count": 27,
+  "feature_timestamp_start": "2010-12-31 00:00:00",
+  "feature_timestamp_end": "2018-01-14 20:00:00",
+  "target_timestamp_start": "2010-12-31 01:00:00",
+  "target_timestamp_end": "2018-01-14 21:00:00",
+  "null_cells": 0,
+  "duplicate_timestamps": 0,
+  "input_was_out_of_order": false,
+  "irregular_timestamp_steps": 548,
+  "invalid_target_alignment_rows": 0,
+  "lookback_hours": 24,
+  "target_definition": "target_ac_power at target_timestamp, exactly one hour after the final input timestamp",
+  "potential_windows": 56252,
+  "valid_sequences": 51621,
+  "rejected_for_timestamp_gaps": 4631,
+  "split_definition": {
+    "assignment_basis": "target_timestamp",
+    "training_end": "2015-12-31 23:59:59",
+    "validation_start": "2016-01-01",
+    "validation_end": "2016-12-31 23:59:59",
+    "test_start": "2017-01-01",
+    "sample_counts": {
+      "train": 41150,
+      "validation": 7919,
+      "test": 2552
+    },
+    "actual_ranges": {
+      "train": {
+        "start": "2011-01-01 00:00:00",
+        "end": "2015-12-31 23:00:00"
+      },
+      "validation": {
+        "start": "2016-01-01 00:00:00",
+        "end": "2016-12-31 21:00:00"
+      },
+      "test": {
+        "start": "2017-01-02 15:00:00",
+        "end": "2017-12-29 21:00:00"
+      }
+    }
+  }
+}
